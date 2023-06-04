@@ -86,13 +86,13 @@ func handleWebSocket2(gincoon *websocket.Conn) {
 
 		// 消费消息
 		msgs, err := ch.Consume(
-			queue.Name, // 队列名称
-			"",         // 消费者标识符（为空表示由RabbitMQ生成）
-			true,       // 自动应答
-			false,      // 是否独占
-			false,      // 是否阻塞等待
-			false,      // 额外属性
-			nil,        // 其他参数
+			queue.Name,
+			"",    // 消费者标识符（为空表示由RabbitMQ生成）
+			true,  // 自动应答
+			false, // 是否独占
+			false, // 是否阻塞等待
+			false, // 额外属性
+			nil,   // 其他参数
 		)
 		if err != nil {
 			log.Fatalf("无法注册RabbitMQ消费者：%v", err)
@@ -268,7 +268,6 @@ func handleWebSocket(gincoon *websocket.Conn) {
 				log.Fatal(err)
 			}
 
-			// 开始捕获和解析数据包
 			packetSource := gopacket.NewPacketSource(handle, handle.LinkType())
 			for packet := range packetSource.Packets() {
 				applicationLayer := packet.ApplicationLayer()
@@ -310,7 +309,7 @@ func handleWebSocket(gincoon *websocket.Conn) {
 					}
 				}
 			}
-			// 连接SSH服务器
+
 		}
 
 	}
