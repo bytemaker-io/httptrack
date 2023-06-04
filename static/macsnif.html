@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket 页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+
+    .message {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .message .mac {
+      font-weight: bold;
+    }
+
+    .message .time {
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script>
+    // 创建 WebSocket 连接
+    const socket = new WebSocket('ws://localhost:9090/ws2');
+
+    // 在接收到消息时处理消息
+    socket.onmessage = function(event) {
+      const message = event.data;
+      const jsonData = JSON.parse(message);
+
+      // 创建消息元素
+      const outputDiv = document.getElementById('output');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message';
+
+      // 创建 macaddress 元素
+      const macSpan = document.createElement('span');
+      macSpan.className = 'mac';
+      macSpan.textContent = 'MAC Address: ' + jsonData.macaddress;
+
+      // 创建时间元素
+      const timeSpan = document.createElement('span');
+      timeSpan.className = 'time';
+      timeSpan.textContent = 'Time: ' + jsonData.time;
+
+      // 将 macaddress 和时间元素添加到消息元素
+      messageDiv.appendChild(macSpan);
+      messageDiv.appendChild(document.createElement('br'));
+      messageDiv.appendChild(timeSpan);
+
+      // 将消息元素添加到输出容器
+      outputDiv.appendChild(messageDiv);
+    };
+
+    // 在连接关闭时处理关闭事件
+    socket.onclose = function(event) {
+      console.log('WebSocket 连接已关闭');
+    };
+
+    // 在连接发生错误时处理错误事件
+    socket.onerror = function(error) {
+      console.error('WebSocket 错误:', error);
+    };
+  </script>
+</body>
+</html>

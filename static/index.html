@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>前端页面</title>
+  <style>
+    .header {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    Big brother
+  </div>
+  <div class="button-container">
+    <button class="button" id="startSniffMacBtn">start sniff mac</button>
+    <button class="button" id="captureHttpBtn">capture http</button>
+  </div>
+
+  <!-- 在这里添加 JavaScript 代码来处理按钮的点击事件 -->
+  <script>
+    var startSniffMacBtn = document.getElementById('startSniffMacBtn');
+    startSniffMacBtn.addEventListener('click', function() {
+        //跳转到macsnif.html
+        window.location.href = 'macsnif.html';
+    
+    });
+
+    var captureHttpBtn = document.getElementById('captureHttpBtn');
+    captureHttpBtn.addEventListener('click', function() {
+   //跳转到httpcap.html
+        window.location.href = 'httpcap.html';
+
+    });
+
+ 
+  </script>
+</body>
+</html>
